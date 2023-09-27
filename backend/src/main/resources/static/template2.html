@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mail de Confirmación de Reserva</title>
+    <style>
+        * {
+            font-family: 'REM', sans-serif;
+            color: #fff7f7;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: #fff7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .confirmation-container {
+            background-color: rgb(28, 37, 54);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            max-width: 850px;
+            width: 100%;
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: 0;
+        }
+
+        h5 {
+            align-items: center;
+
+        }
+
+        .flex-container img {
+            max-width: 150px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: start;
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #f85532;
+            font-size: 25px;
+        }
+
+        .details {
+            text-align: left;
+            font-family: 'REM', sans-serif;
+            margin-left: 30px;
+            color: #fff;
+        }
+
+        .details ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .details li {
+            margin-bottom: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 1px solid #af0cf0;
+            margin: 0 auto;
+        }
+
+        table td {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        table tr {
+            border-bottom: 1px solid #af0cf0;
+        }
+
+        a {
+            color: #f85532;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="confirmation-container">
+    <div class="flex-container">
+        <img src="https://imagizer.imageshack.com/img922/8891/oWkV4d.png" alt="Logo de la empresa">
+        <h5 style="font-size: 20px; color: #fff;">Mr Instruments</h5>
+    </div>
+    <h1>Reserva confirmada</h1>
+    <p>¡Hola ${name} su reserva fue generada con éxito y está en camino!</p>
+    <div class="details">
+        <h3>Detalles de la reserva:</h3>
+        <ul>
+            <li>Nombre usuario: ${name} ${surname}</li>
+            <li>Fecha y hora de reserva: ${fechaReserva}</li>
+        </ul>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td>Productos</td>
+            </tr>
+            <tr><td></td></tr>
+        </table>
+    </div>
+    <br/>
+    <p>Si necesitas hacer cambios o requieres asistencia, por favor mándanos un correo a</p>
+    <a style="color: #f85532;" href="mailto:mrinstrumentscorporation@gmail.com">mrinstrumentscorporation@gmail.com</a>
+    <br/>
+    <p>Tú eres la razón de nuestro trabajo diario.</p>
+    <p>¡Gracias por elegirnos!</p>
+</div>
+</body>
+</html>

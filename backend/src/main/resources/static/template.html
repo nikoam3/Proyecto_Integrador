@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmación de Registro</title>
+    <style> * {
+        font-family: 'REM', sans-serif;
+        color: #fff7f7;
+        font-size: 16px;
+    }
+
+    .flex-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    h5 {
+         align-items: center;
+         text-align: start;
+    }
+
+    </style>
+</head>
+<body style="background-color: #fff7f7; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh;">
+<div class="confirmation-container" style="background-color: rgb(28, 37, 54); border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); padding: 20px; text-align: center; width: 900%; max-width: 750px; height: 800%; max-height: 600px;">
+    <section class="flex-container">
+        <img src="https://imagizer.imageshack.com/img922/8891/oWkV4d.png" alt="Logo de la empresa" style="max-width: 150px; margin-bottom: 00px;">
+        <h5 style="font-size: 20px;">Mr Instrumens</h5>
+    </section>
+
+    <h1 style="margin-top: 0; color: #f85532; font-size: 25px;">Bienvenido</h1>
+    <p>¡Hola ${name} ${surname}</p>
+    <p>Gracias por registrarte en nuestro sitio. Tu registro ha sido exitoso.</p>
+    <p>Por favor, verifica que la siguiente información sea correcta:</p>
+    <p style=" color: #f85532; text-decoration: none;">Correo Electrónico: ${email_usuario}</p>
+    <br/>
+    <p>Puedes acceder a tu cuenta haciendo clic en el siguiente enlace:</p>
+    <a href="http://e4-mr.instruments.s3-website.us-east-2.amazonaws.com/login" style="display: inline-block; padding: 10px 20px; background-color: #f85532; color: #ffff; text-decoration: none; border-radius: 5px; margin-top: 15px;">Ingresar</a>
+    <!--<p style="margin-top: 20px">Si no encuentras el correo en tu bandeja de entrada, puedes <a href="[Enlace de Reenvío de Correo]" style="color: #af0cf0">solicitar que se reenvíe</a>.</p>-->
+</div>
+</body>
+</html>
