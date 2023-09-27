@@ -1,27 +1,21 @@
 # Proyecto_Integrador
 Proyecto final del curso Certified Tech Developer 
-Detalles:
 
 # Front End
 Usamos React con Vite para nuestra base de código front-end. Además de la implementación de la libreria MUI.
+https://proyecto-integrador-omega-navy.vercel.app/
 
 # Back End
-# Servidor en tiempo real
-
+- Servidor en tiempo real
 Brinda detalles sobre el funcionamiento del servidor en tiempo real.
-
 Usamos la estructura Phoenix en Elixir para sincronizar todos los cambios en vivo en nuestra aplicación. 
-
 Elixir es un lenguaje dinámico y funcional diseñado para crear aplicaciones adaptables y sostenibles que se ejecutan en la máquina virtual Erlang.
 
-## JWT (JSON Web Token)
-
+- JWT (JSON Web Token)
 Es un estándar para transmitir información de forma segura en internet, por medio de archivos en formato JSON, que es un tipo de archivo de texto plano con el cual se pueden crear parámetros y asignarles un valor. Este sistema se utiliza para la autenticación de usuarios en aplicaciones y su función principal es la de validar la identidad de quien ingresa a la página, después de que ya haya iniciado sesión en el pasado. De esta forma, no es necesario hacer el proceso de *login* cada vez que se entra a la página.
 
-### **Autenticación de APIs basada en tokens con Spring y JWT**
-
+- Autenticación de APIs basada en tokens con Spring y JWT
 Cómo autenticar una API mediante tokens aplique los siguientes pasos:
-
 - Crear un API REST con Spring Boot
 - Proteger recursos publicados en el API.
 - Implementar un controlador para autenticar usuarios y generar un token de acceso.
@@ -31,6 +25,8 @@ Cómo autenticar una API mediante tokens aplique los siguientes pasos:
 - Utilizamos como servicio de instraestructura para nuestro proyecto AWS, porque el costo es bajo, es escalable, de alto desempeño, es flexible, brinda seguridad y soporte técnico las 24hs.
 - Para correr el backend, utilizamos EC2, donde al mismo se le cargó una imagen de Docker en donde tenemos cargado todo el back.
 - Para correr el frontend, utilizamos un bucket de S3, que nos genera un link con acceso público. En la actualidad se va a cambiar por un link de Vercel.
+ Además utilizamos pipeline en gitlab para la carga automática del front al bucket. 
+- https://proyecto-integrador-omega-navy.vercel.app/
 
 # MySQL Workbench
 
