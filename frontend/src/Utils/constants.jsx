@@ -5,9 +5,9 @@ const config = {
     withCredentials: false,
     headers: {
         Authorization: `Bearer ${token}`,
-        /*'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': '*',
-        'Content-Type': 'application/json',*/
+        'Content-Type': 'application/json',
     },
 }
 
