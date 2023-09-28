@@ -26,6 +26,7 @@
         "react-share": "^4.4.1",
         "rsuite": "^5.39.0",
         "simplebar-react": "^3.2.4",
+        "vercel": "^32.3.0",
         "yup": "^1.2.0"
     },
     "devDependencies": {
