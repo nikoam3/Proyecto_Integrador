@@ -55,7 +55,7 @@ export default function Resenia({ idProducto, usuarioLog }) {
             })
             .catch(console.log)
     }
-
+    
     useEffect(() => {
         axios
             .get(urlBase + 'resenias/producto/' + idProducto, config)

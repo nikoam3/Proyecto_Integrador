@@ -36,7 +36,7 @@ const Detalle = () => {
             key: 'selection',
         },
     ])
-    const [productoImagenes, setProductoImagenes] = useState()
+    const [productoImagenes, setProductoImagenes] = useState('')
     const [usuarioLog, setUsuarioLog] = useState()
     const [openForm, setOpenForm] = useState(false)
     const [fechasReservado, setFechasReservado] = useState('')
@@ -68,28 +68,27 @@ const Detalle = () => {
             userRol: usuarioLog?.user_role
         },
     }
-    console.log(usuarioLog);
+
     useEffect(() => {
         axios
-            .get(urlBase + 'productos/' + params.id, config)
+            .get(urlBase + 'productos/' + params.id)
             .then((res) => {
                 dispatch({ type: 'GET_UNIQUE', payload: res.data })
                 setProductoImagenes(res.data.imagenes)
             })
-            .catch(console.log)
         axios
             .get(urlBase + 'reservas/producto/' + params.id, config)
             .then((res) => {
                 setFechasReservado(res.data[0])
             })
-        axios
-            .get(urlBase + 'usuarios/' + jwt_decode(user).id, config)
+        /*axios
+            .get(urlBase + 'usuarios/' + jwt_decode(user)?.id, config)
             .then((res) => {
                 setUsuarioLog(res.data)
-            })
-        /*if (user) {
+            })*/
+        if (user) {
             setUsuarioLog(jwt_decode(user))
-        }*/
+        }
     }, [])
 
     const handleOpenForm = () => {

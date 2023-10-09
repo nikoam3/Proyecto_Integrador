@@ -18,7 +18,7 @@ const ProductCard = ({ data, loading, setLoading }) => {
         /*console.log(data)*/
     }
     return (
-        <Grid item xs={12} sm={6} md={4} lg={2} spacing={6}>
+        <Grid item xs={12} sm={6} md={4} lg={2}>
             <Link to={`/detalle/${data.id}`}>
                 <Card
                     sx={{
