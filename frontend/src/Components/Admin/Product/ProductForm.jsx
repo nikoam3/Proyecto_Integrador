@@ -35,7 +35,7 @@ const ProductForm = ({ handleClose }) => {
             precio: values.precio,
             categoria: { "id": values.categoria },
             caracteristicas: caracteristicas.length > 0 ? caracteristicas.map((caracteristica) => ({"id":caracteristica})) : null,
-            imagenes: "https://s3.us-east-2.amazonaws.com/e4-mr.instruments-imagenes/images/products/saxophone_alto/png/"
+            imagenes: ""
         }
 
         axios
