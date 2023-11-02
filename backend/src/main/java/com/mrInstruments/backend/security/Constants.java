@@ -12,6 +12,6 @@ public class Constants {
 
 	public static final String ISSUER_INFO = "http://e4-mr.instruments.s3-website.us-east-2.amazonaws.com/";
 	public static final String SUPER_SECRET_KEY = "1234";
-	public static final long TOKEN_EXPIRATION_TIME = 864_000_000; // 10 day
+	public static final long TOKEN_EXPIRATION_TIME = 31540000000L; // 10 day
 
 }
