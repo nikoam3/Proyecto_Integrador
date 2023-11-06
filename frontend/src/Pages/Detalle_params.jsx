@@ -37,7 +37,7 @@ const Detalle = () => {
         },
     ])
     const [productoImagenes, setProductoImagenes] = useState('')
-    const [usuarioLog, setUsuarioLog] = useState()
+    const [usuarioLog, setUsuarioLog] = useState('')
     const [openForm, setOpenForm] = useState(false)
     const [fechasReservado, setFechasReservado] = useState('')
     const { user } = useAuthContext()
