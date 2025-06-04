@@ -8,7 +8,7 @@ COPY .mvn .mvn
 COPY pom.xml .
 #AGREGO LA SIGUIENTE LINEA PARA QUE SE EJECUTEN EN WINDOWS LOS COMANDOS LINUX
 #BORRARLA SI SE EJECUTA EN LINUX!!
-RUN sed -i 's/\r$//' mvnw
+#RUN sed -i 's/\r$//' mvnw
 
 RUN chmod +x ./mvnw
 RUN ls
@@ -21,7 +21,6 @@ COPY src src
 
 RUN ./mvnw package
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
-
 
 # Production Stage for Spring boot application image
 FROM openjdk:20-jdk-slim as production
