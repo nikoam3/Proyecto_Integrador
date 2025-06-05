@@ -8,7 +8,7 @@ COPY .mvn .mvn
 COPY pom.xml .
 #AGREGO LA SIGUIENTE LINEA PARA QUE SE EJECUTEN EN WINDOWS LOS COMANDOS LINUX
 #BORRARLA SI SE EJECUTA EN LINUX!!
-#RUN sed -i 's/\r$//' mvnw
+RUN sed -i 's/\r$//' mvnw
 
 RUN chmod +x ./mvnw
 RUN ls
@@ -33,4 +33,4 @@ COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 
 # Run the Spring boot application
 ENTRYPOINT ["java", "-cp", "app:app/lib/*","com.mrInstruments.backend.MrInstrumentsApplication"]
-EXPOSE 8080
+EXPOSE 8443
