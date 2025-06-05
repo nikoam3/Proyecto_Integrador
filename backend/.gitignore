@@ -44,3 +44,4 @@ build/
 README.md
 .dockerignore
 *.md
+/src/main/resources/application.properties
