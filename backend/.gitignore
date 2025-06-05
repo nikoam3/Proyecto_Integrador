@@ -38,3 +38,9 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+.git
+.gitignore
+README.md
+.dockerignore
+*.md
