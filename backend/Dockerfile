@@ -33,4 +33,4 @@ COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 
 # Run the Spring boot application
 ENTRYPOINT ["java", "-cp", "app:app/lib/*","com.mrInstruments.backend.MrInstrumentsApplication"]
-EXPOSE 8080
+EXPOSE 8443
