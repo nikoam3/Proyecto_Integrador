@@ -18,7 +18,6 @@ const UserForm = ({ handleClose }) => {
     const { getData } = useLoadUsers()
 
     const handleFormSubmit = (values) => {
-        console.log(values)
         const formData = {
             nombre: values.nombre,
             apellido: values.apellido,

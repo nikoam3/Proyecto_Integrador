@@ -38,7 +38,6 @@ const ListadoFavoritos = () => {
             .get(urlBase + 'favoritos/usuario/' + userDecoded.id, newConfig)
             .then((res) => {
                 setFavoritos(res.data)
-                console.log(favoritos);
             })
             .catch(console.log)
     }

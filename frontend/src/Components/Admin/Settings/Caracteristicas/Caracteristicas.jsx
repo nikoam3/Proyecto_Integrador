@@ -20,7 +20,6 @@ const Caracteristicas = ({ handleClickOpen }) => {
         await axios
             .get(urlBase + 'caracteristicas', config)
             .then((res) => {
-                console.log(res.data)
                 setCaracteristicas(res.data)
             })
             .catch(console.log)

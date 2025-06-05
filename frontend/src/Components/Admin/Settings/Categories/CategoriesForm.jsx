@@ -18,7 +18,6 @@ const CategoriesForm = () => {
                 }
             })
             .catch(console.log)
-        //location.reload()
     }
     return (
         <Box m="20px">

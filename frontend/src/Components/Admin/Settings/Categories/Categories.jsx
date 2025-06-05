@@ -20,7 +20,6 @@ const Categories = ({ handleClickOpen }) => {
         await axios
             .get(urlBase + 'categorias', config)
             .then((res) => {
-                console.log(res.data)
                 setCategories(res.data)
             })
             .catch(console.log)
