@@ -87,7 +87,6 @@ const ListadoFavoritos = () => {
         },
 
     ]
-    console.log(productos);
     return (
         <Box sx={{
             flexGrow: 1,

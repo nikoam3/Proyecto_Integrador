@@ -93,7 +93,6 @@ export const UsersTable = () => {
     }
 
     const handleModify = (id) => {
-        console.log(id)
         setOpenModify(true)
     }
     const handleDelete = (user) => {

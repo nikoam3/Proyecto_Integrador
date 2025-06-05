@@ -15,7 +15,6 @@ import { useSnackbar } from '../../../Context/SnackContext'
 import { useLoadUsers } from '../../../hooks/Admin/useLoadUsers'
 
 const ProductActionsDeleteIcon = ({ dialog, handleOpen, handleClose }) => {
-    console.log(dialog);
     const { getData } = useLoadUsers()
     const { showSnackbar } = useSnackbar()
     const handleDeleteConfirm = () => {

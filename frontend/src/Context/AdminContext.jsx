@@ -21,7 +21,6 @@ export const adminReducer = (state, action) => {
 
 export const AdminProvider = ({ children }) => {
     const [state, dispatch] = useReducer(adminReducer, initialState)
-    console.log('AdminContext state: ', state)
     return (
         <AdminContext.Provider value={{ ...state, dispatch }}>
             {children}
