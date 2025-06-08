@@ -11,10 +11,10 @@ const Home = () => {
     return (
         <Grid container>
             <PrimaryBanner />
-            <OurProducts />
+            <ProductosRecomendados />
             <Buscador />
             <AboutUs />
-            <ProductosRecomendados />
+            <OurProducts />
             <Categorias />
         </Grid>
     )

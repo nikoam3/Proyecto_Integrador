@@ -6,7 +6,7 @@ import { config, urlBase } from '../../Utils/constants'
 import { useProducts } from '../../Context/ProductContext'
 
 const ResultadoBuscador = ({ nombreProducto, stateDates }) => {
-
+    const [loading, setLoading] = useState(true)
     const [products, setProducts] = useState([])
     const [reservas, setReservas] = useState([])
     const [dialogo, setDialogo] = useState(false)
@@ -14,6 +14,7 @@ const ResultadoBuscador = ({ nombreProducto, stateDates }) => {
 
     useEffect(() => {
         setProducts(state.productList.filter((product) => product.nombre == nombreProducto))
+        setLoading(false)
     }, [nombreProducto])
 
     useEffect(() => {
@@ -27,7 +28,7 @@ const ResultadoBuscador = ({ nombreProducto, stateDates }) => {
         reservas?.map((reserva) => {
 
             if ((stateDates[0]?.startDate <= (new Date(reserva?.fechaReserva)) &&
-                    stateDates[0]?.endDate <= (new Date(reserva?.fechaReserva)))
+                stateDates[0]?.endDate <= (new Date(reserva?.fechaReserva)))
                 ||
                 (stateDates[0]?.startDate >= (new Date(reserva?.fechaEntrega)) &&
                     stateDates[0]?.endDate >= (new Date(reserva?.fechaEntrega)))
@@ -55,7 +56,7 @@ const ResultadoBuscador = ({ nombreProducto, stateDates }) => {
                 :
                 <Grid container justifyContent={'space-evenly'} my={4}>
                     {products?.map((item) => (
-                        <ProductCard key={item.id} data={item} />
+                        <ProductCard key={item.id} data={item} loading={loading} />
                     ))}
                 </Grid>}
         </Box>

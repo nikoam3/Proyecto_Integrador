@@ -10,10 +10,13 @@ import {
     Skeleton,
     Chip,
 } from '@mui/material'
+import { tr } from 'date-fns/locale'
 import React from 'react'
+import { useEffect } from 'react'
+import { use } from 'react'
 import { Link } from 'react-router-dom'
 
-const ProductCard = ({ data, loading, setLoading }) => {
+const ProductCard = ({ data, loading }) => {
     return (
         <Grid item xs={12} sm={6} md={4} lg={2}>
             <Link to={`/detalle/${data.id}`}>
@@ -42,7 +45,7 @@ const ProductCard = ({ data, loading, setLoading }) => {
                         {loading ? (
                             <Skeleton variant="rectangular" />
                         ) : (
-                            <Box sx={{ display: 'flex', gap: 1, flexDirection: 'column',  }}>
+                            <Box sx={{ display: 'flex', gap: 1, flexDirection: 'column', }}>
                                 {data.caracteristicas.map((item) => (
                                     <Chip
                                         key={item.id}

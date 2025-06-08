@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ProductsPagination from '../Common/ProductsPagination'
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Grid, Typography, Skeleton } from '@mui/material'
 import ProductCard from './ProductCard'
 
 const OurProducts = () => {
