@@ -70,9 +70,28 @@ const Navbar = (props) => {
                     </Typography>
                 </NavLink>
                 <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
-                    <IconButton disableRipple>
-                        <MenuIcon />
-                    </IconButton>
+                        <NavLink to={publicRoutes.register}>
+                                <Button sx={{mt: 3}}
+                                    variant={
+                                        trigger == true
+                                            ? 'outlined'
+                                            : 'contained'
+                                    }
+                                >
+                                    Crear Cuenta
+                                </Button>
+                            </NavLink>
+                            <NavLink to={publicRoutes.login}>
+                                <Button sx={{mt: 1}}
+                                    variant={
+                                        trigger == true
+                                            ? 'outlined'
+                                            : 'contained'
+                                    }
+                                >
+                                    Iniciar Sesión
+                                </Button>
+                            </NavLink>
                 </Box>
                 <Box sx={{ display: { xs: 'none', sm: 'flex', gap: 12 } }}>
                     {user && <NavbarUserMenu userDecoded={userDecoded} />}
