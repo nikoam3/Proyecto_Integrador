@@ -23,6 +23,7 @@ import { publicRoutes } from '../Utils/routes'
 import { useSnackbar } from '../Context/SnackContext'
 import FormReservar from '../Components/Common/FormReservar'
 import Compartir from '../Components/Common/Compartir'
+import { parseJSON } from 'date-fns'
 
 const Detalle = () => {
     const { showSnackbar } = useSnackbar()
@@ -37,7 +38,7 @@ const Detalle = () => {
         },
     ])
     const [productoImagenes, setProductoImagenes] = useState('')
-    const [usuarioLog, setUsuarioLog] = useState('')
+    const [usuarioLog, setUsuarioLog] = useState(null)
     const [openForm, setOpenForm] = useState(false)
     const [fechasReservado, setFechasReservado] = useState('')
     const { user } = useAuthContext()
@@ -62,22 +63,25 @@ const Detalle = () => {
         seguro: state.product?.precio,
         usuario: {
             id: parseInt(usuarioLog?.id),
-            email: usuarioLog?.email,
-            nombre: usuarioLog?.nombre,
-            apellido: usuarioLog?.apellido,
+            email: usuarioLog?.sub,
+            fullname: usuarioLog?.fullname,
             userRol: usuarioLog?.user_role
         },
     }
 
     useEffect(() => {
+        if (user) {
+            const userDetails = jwt_decode(user)
+            setUsuarioLog(userDetails)
+        }
         axios
-            .get(urlBase + 'productos/' + params.id)
+            .get(urlBase + 'productos/' + params?.id)
             .then((res) => {
                 dispatch({ type: 'GET_UNIQUE', payload: res.data })
                 setProductoImagenes(res.data.imagenes)
             })
         axios
-            .get(urlBase + 'reservas/producto/' + params.id, config)
+            .get(urlBase + 'reservas/producto/' + params?.id, config)
             .then((res) => {
                 setFechasReservado(res.data[0])
             })
@@ -86,9 +90,6 @@ const Detalle = () => {
             .then((res) => {
                 setUsuarioLog(res.data)
             })*/
-        if (user) {
-            setUsuarioLog(jwt_decode(user))
-        }
     }, [])
 
     const handleOpenForm = () => {
@@ -107,7 +108,6 @@ const Detalle = () => {
 
         }
     }
-
     const handleCloseForm = () => {
         setOpenForm(false)
     }
