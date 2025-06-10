@@ -55,7 +55,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 				.antMatchers(AUTH_LIST).permitAll()
 				.antMatchers(Constants.LOGIN_URL).permitAll()
 				.antMatchers("/stock/**").hasRole("ADMIN")
-				.antMatchers("/pedidos/**").hasAnyRole("ADMIN","USER")
 				.anyRequest().authenticated().and()
 				//.httpBasic().authenticationEntryPoint(swaggerAuthenticationEntryPoint()).and()
 				.addFilterBefore(new JWTAuthenticationFilter(Constants.LOGIN_URL, authenticationManager()), UsernamePasswordAuthenticationFilter.class)
@@ -92,6 +91,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 			"/productos/**",
 			"/categorias/**",
 			"/caracteristicas/**",
-			"/usuarios/**"
+			"/usuarios/**",
+			"/reservas/**"
 	};
 }

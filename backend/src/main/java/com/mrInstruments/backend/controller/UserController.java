@@ -54,7 +54,7 @@ public class UserController {
 
     //----------------------GET BUSCAR POR ID ------------------------
     @GetMapping("/{id}")
-    @RolesAllowed("ROLE_ADMIN")
+    @RolesAllowed({"ROLE_ADMIN","ROLE_USER"})
     public ResponseEntity<UserDto> buscarUserPorId(@PathVariable Long id) throws Exception {
         Optional<UserDto> usuarioBuscado= userService.buscarUserPorId(id);
         if(usuarioBuscado.isPresent()){
@@ -68,7 +68,7 @@ public class UserController {
 
     //----------------------ACTUALIZAR USUARIO ------------------------
     @PutMapping
-    @RolesAllowed("ROLE_ADMIN")
+    @RolesAllowed({"ROLE_ADMIN","ROLE_USER"})
     public ResponseEntity<UserDto> actualizarUsuario(@RequestBody UserToRegisterDto userToRegisterDto) throws Exception {
         UserDto userDto = userToRegisterDtoToUserDto(new UserDto(), userToRegisterDto);
         return ResponseEntity.ok(userService.actualizarUsuario(userDto));
