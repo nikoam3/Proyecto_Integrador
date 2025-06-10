@@ -25,7 +25,7 @@ const Categorias = () => {
     useEffect(() => {
         setProducts(state.productList);
         axios
-            .get(urlBase + 'categorias/', config)
+            .get(urlBase + 'categorias/')
             .then((res) => {
                 setCategorias(res.data)
                 setLoading(false)

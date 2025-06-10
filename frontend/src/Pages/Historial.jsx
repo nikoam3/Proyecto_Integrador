@@ -19,7 +19,7 @@ const ListadoFavoritos = () => {
 
     useEffect(() => {
         axios
-            .get(urlBase + 'reservas/usuario/' + jwt_decode(user).id, config)
+            .get(urlBase + 'reservas/usuario/' + jwt_decode(user).id)
             .then((res) => {
                 setProductos(res.data)
             })

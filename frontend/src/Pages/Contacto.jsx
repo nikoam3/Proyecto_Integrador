@@ -5,7 +5,7 @@ import { config, urlBase } from '../Utils/constants'
 const Home = () => {
     useEffect(() => {
         axios
-            .get(urlBase + 'productos', config)
+            .get(urlBase + 'productos')
             .then(console.log)
             .catch(console.log)
     }, [])

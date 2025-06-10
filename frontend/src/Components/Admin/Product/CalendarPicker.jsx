@@ -26,7 +26,7 @@ const CalendarPicker = ({ reserveParams, setStateDates, stateDates }) => {
     let dateStrings = []
     useEffect(() => {
         axios
-            .get(urlBase + 'reservas/producto/' + reserveParams, config)
+            .get(urlBase + 'reservas/producto/' + reserveParams)
             .then((res) => {
                 const data = res.data
                 data.map((date) => {

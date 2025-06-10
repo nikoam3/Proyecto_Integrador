@@ -13,7 +13,7 @@ const ProductsPagination = ({ setProducts, setLoading, loading }) => {
     })
     useEffect(() => {
         axios
-            .get(urlBase + 'productos', config)
+            .get(urlBase + 'productos')
             .then((res) => {
                 let data = res.data.slice(pagination.from, pagination.to)
                 return {

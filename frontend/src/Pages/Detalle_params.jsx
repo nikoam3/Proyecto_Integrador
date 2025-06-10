@@ -81,15 +81,10 @@ const Detalle = () => {
                 setProductoImagenes(res.data.imagenes)
             })
         axios
-            .get(urlBase + 'reservas/producto/' + params?.id, config)
+            .get(urlBase + 'reservas/producto/' + params?.id)
             .then((res) => {
                 setFechasReservado(res.data[0])
             })
-        /*axios
-            .get(urlBase + 'usuarios/' + jwt_decode(user)?.id, config)
-            .then((res) => {
-                setUsuarioLog(res.data)
-            })*/
     }, [])
 
     const handleOpenForm = () => {
