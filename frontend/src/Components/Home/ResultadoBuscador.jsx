@@ -7,38 +7,40 @@ import { useProducts } from '../../Context/ProductContext'
 
 const ResultadoBuscador = ({ nombreProducto, stateDates }) => {
     const [loading, setLoading] = useState(true)
-    const [products, setProducts] = useState([])
+    const [product, setProduct] = useState([])
     const [reservas, setReservas] = useState([])
     const [dialogo, setDialogo] = useState(false)
     const { state } = useProducts()
 
     useEffect(() => {
-        setProducts(state.productList.filter((product) => product.nombre == nombreProducto))
+        setProduct(state.productList.find((product) => product.nombre == nombreProducto))
         setLoading(false)
     }, [nombreProducto])
 
     useEffect(() => {
-        axios
-            .get(urlBase + 'reservas/producto/' + products[0]?.id, config)
-            .then((res) => {
-                setReservas(res.data)
+        if (product) {
+            axios
+                .get(urlBase + 'reservas/producto/' + product.id)
+                .then((res) => {
+                    setReservas(res.data)
+                })
+                .catch(console.log)
+
+            reservas?.map((reserva) => {
+
+                if ((stateDates[0]?.startDate <= (new Date(reserva?.fechaReserva)) &&
+                    stateDates[0]?.endDate <= (new Date(reserva?.fechaReserva)))
+                    ||
+                    (stateDates[0]?.startDate >= (new Date(reserva?.fechaEntrega)) &&
+                        stateDates[0]?.endDate >= (new Date(reserva?.fechaEntrega)))
+                ) {
+                    setDialogo(false)
+                } else {
+                    setDialogo(true)
+                }
             })
-            .catch(console.log)
-
-        reservas?.map((reserva) => {
-
-            if ((stateDates[0]?.startDate <= (new Date(reserva?.fechaReserva)) &&
-                stateDates[0]?.endDate <= (new Date(reserva?.fechaReserva)))
-                ||
-                (stateDates[0]?.startDate >= (new Date(reserva?.fechaEntrega)) &&
-                    stateDates[0]?.endDate >= (new Date(reserva?.fechaEntrega)))
-            ) {
-                setDialogo(false)
-            } else {
-                setDialogo(true)
-            }
-        })
-    }, [products, stateDates])
+        }
+    }, [product, stateDates])
 
     return (
 
@@ -55,9 +57,11 @@ const ResultadoBuscador = ({ nombreProducto, stateDates }) => {
                 </Typography>
                 :
                 <Grid container justifyContent={'space-evenly'} my={4}>
-                    {products?.map((item) => (
-                        <ProductCard key={item.id} data={item} loading={loading} />
-                    ))}
+                    {product ?
+                        (<ProductCard key={product.id} data={product} loading={loading} />)
+                        :
+                        (<> </>)
+                    }
                 </Grid>}
         </Box>
     )
