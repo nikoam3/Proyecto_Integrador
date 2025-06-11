@@ -55,7 +55,7 @@ export const ProductProvider = ({ children }) => {
 
     useEffect(() => {
         axios
-            .get(urlBase + 'productos', config)
+            .get(urlBase + 'productos')
             .then((res) => {
                 dispatch({ type: 'GET_LIST', payload: res.data })
             })

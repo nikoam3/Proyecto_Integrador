@@ -13,7 +13,7 @@ const ProductsPagination = ({ setProducts, setLoading, loading }) => {
     })
     useEffect(() => {
         axios
-            .get(urlBase + 'productos', config)
+            .get(urlBase + 'productos')
             .then((res) => {
                 let data = res.data.slice(pagination.from, pagination.to)
                 return {
@@ -28,11 +28,13 @@ const ProductsPagination = ({ setProducts, setLoading, loading }) => {
             })
             .finally(setLoading(true))
     }, [pagination.from, pagination.to])
+    
     const handlePageChange = (e, page) => {
         const from = (page - 1) * pageSize
         const to = (page - 1) * pageSize + pageSize
         setPagination({ ...pagination, from: from, to: to })
     }
+
     return (
         <Box
             sx={{

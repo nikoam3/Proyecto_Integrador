@@ -7,11 +7,14 @@ import {
     Button,
     Typography,
     Box,
+    Skeleton
 } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useProducts } from '../../Context/ProductContext'
 import { Link } from 'react-router-dom'
 import ProductCard from './ProductCard'
+import { useState } from 'react'
+import { set } from 'date-fns'
 
 const GrillaProductos = () => {
     function shuffle(lista) {
@@ -24,16 +27,20 @@ const GrillaProductos = () => {
             randomIndex = Math.floor(Math.random() * currentIndex)
             currentIndex--
 
-            // And swap it with the current element.
-            ;[lista[currentIndex], lista[randomIndex]] = [
-                lista[randomIndex],
-                lista[currentIndex],
-            ]
+                // And swap it with the current element.
+                ;[lista[currentIndex], lista[randomIndex]] = [
+                    lista[randomIndex],
+                    lista[currentIndex],
+                ]
         }
 
         return lista
     }
+    const [loading, setLoading] = useState(true)
     const { state } = useProducts()
+    useEffect(() => {
+        setLoading(false)
+    }, [state])
     return (
         <Grid container paddingY={{ xs: 2, sm: 3, md: 5 }}>
             <Typography
@@ -46,9 +53,11 @@ const GrillaProductos = () => {
             >
                 Productos recomendados
             </Typography>
-            <Grid paddingY={10} container spacing={6} paddingX={15}>
-                {(shuffle(state.productList).slice(-6)).map((product) => (
-                    <ProductCard key={product.id} data={product} />
+            <Grid container sx={{
+                justifyContent: "center",
+            }} spacing={2}>
+                {(shuffle(state.productList).slice(-5)).map((product) => (
+                    <ProductCard key={product.id} data={product} loading={loading} />
                 ))}
             </Grid>
         </Grid>

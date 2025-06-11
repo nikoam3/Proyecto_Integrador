@@ -34,8 +34,8 @@ const FormReservar = ({
         nombreProducto: producto?.nombre,
         descripcion: producto?.descripcion,
         precio: producto?.precio,
-        nombreUsuario: `${usuario?.nombre} ${usuario?.apellido}`,
-        email: usuario?.email,
+        nombreUsuario: usuario?.fullname,
+        email: usuario?.sub,
         fechaReserva: format(stateDates[0]?.startDate, 'dd-MM-yyyy'),
         fechaEntrega: format(stateDates[0]?.endDate, 'dd-MM-yyyy'),
     }

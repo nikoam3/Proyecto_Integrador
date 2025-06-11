@@ -20,13 +20,15 @@ const Categorias = () => {
     const [products, setProducts] = useState([])
     const [productosFiltrados, setProductosFiltrados] = useState([])
     const { state } = useProducts()
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         setProducts(state.productList);
         axios
-            .get(urlBase + 'categorias/', config)
+            .get(urlBase + 'categorias/')
             .then((res) => {
                 setCategorias(res.data)
+                setLoading(false)
             })
             .catch(console.log)
     }, [])
@@ -84,7 +86,7 @@ const Categorias = () => {
                 justifyContent={'space-evenly'} my={4}
             >
                 {productosFiltrados.map((item) =>
-                    <ProductCard key={item.id} data={item} />
+                    <ProductCard key={item.id} data={item} loading={loading} />
                 )}
             </Grid>
         </Grid>

@@ -4,8 +4,10 @@ import axios from 'axios'
 import { config, urlBase } from '../../Utils/constants'
 import ResultadoBuscador from './ResultadoBuscador'
 import { DateRangePicker } from 'react-date-range'
+import { useProducts } from '../../Context/ProductContext'
 
 const Buscador = () => {
+    const { state } = useProducts()
     const [products, setProducts] = useState([])
     const [nombreProducto, setNombreProducto] = useState("")
     const [stateDates, setStateDates] = useState([{
@@ -13,14 +15,10 @@ const Buscador = () => {
         endDate: new Date(),
         key: 'selection',
     },]);
+
     useEffect(() => {
-        axios
-            .get(urlBase + 'productos', config)
-            .then((res) => {
-                setProducts(res.data)
-            })
-            .catch(console.log)
-    }, [])
+        setProducts(state.productList)
+    }, [state])
     return (
         <>
             <Typography variant="h4"

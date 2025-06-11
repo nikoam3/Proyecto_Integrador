@@ -16,9 +16,9 @@ import AddCircleIcon from '@mui/icons-material/AddCircle'
 import FormDialogCategories from './FormDialogCategories'
 const Categories = ({ handleClickOpen }) => {
     const [categories, setCategories] = useState([])
-    const getData = async () => {
-        await axios
-            .get(urlBase + 'categorias', config)
+    const getData = () => {
+        axios
+            .get(urlBase + 'categorias')
             .then((res) => {
                 setCategories(res.data)
             })

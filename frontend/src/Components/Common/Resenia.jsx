@@ -58,7 +58,7 @@ export default function Resenia({ idProducto, usuarioLog }) {
     
     useEffect(() => {
         axios
-            .get(urlBase + 'resenias/producto/' + idProducto, config)
+            .get(urlBase + 'resenias/producto/' + idProducto)
             .then((res) => {
                 setResenias(res.data)
                 calculoValor()
