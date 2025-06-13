@@ -14,7 +14,6 @@ const ResultadoBuscador = ({ nombreProducto, stateDates }) => {
 
     useEffect(() => {
         setProduct(state.productList.find((product) => product.nombre == nombreProducto))
-        setLoading(false)
     }, [nombreProducto])
 
     useEffect(() => {
@@ -58,7 +57,7 @@ const ResultadoBuscador = ({ nombreProducto, stateDates }) => {
                 :
                 <Grid container justifyContent={'space-evenly'} my={4}>
                     {product ?
-                        (<ProductCard key={product.id} data={product} loading={loading} />)
+                        (<ProductCard key={product.id} data={product} loading={state.loading} />)
                         :
                         (<> </>)
                     }

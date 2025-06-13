@@ -1,74 +1,90 @@
 import axios from 'axios'
-import { createContext, useContext, useEffect, useReducer } from 'react'
+import { createContext, useContext, useEffect, useReducer, useMemo } from 'react';
 import { config, urlBase } from '../Utils/constants'
+import { isItemExists } from '../Utils/helpers'
 
 export const ProductContext = createContext()
-
-export const isItemExists = (array, newItem) => {
-    return array.some((item) => item.id === newItem.id)
-}
 
 const initialState = JSON.parse(localStorage.getItem('GlobalContext')) || {
     product: {},
     productList: [],
     favoritesList: [],
+    loading: true,
+    error: null
 }
 
 const reducer = (state, action) => {
     switch (action.type) {
+        case 'SET_LOADING':
+            return {
+                ...state,
+                loading: action.payload,
+            }
+        case 'SET_ERROR':
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            };
         case 'GET_LIST':
-            localStorage.setItem('GlobalContext', JSON.stringify(state))
             return {
                 ...state,
                 productList: action.payload,
+                loading: false,
             }
         case 'GET_UNIQUE':
-            localStorage.setItem('GlobalContext', JSON.stringify(state))
             return {
                 ...state,
                 product: action.payload,
             }
         case 'ADD_FAV':
             if (!isItemExists(state.favoritesList, action.payload)) {
-                state.favoritesList.push(action.payload)
-                localStorage.setItem('GlobalContext', JSON.stringify(state))
+                return {
+                    ...state,
+                    favoritesList: [...state.favoritesList, action.payload],
+                };
             }
-            return {
-                ...state,
-            }
+            return state;
         case 'DELETE_FAV':
-            const filteredState = {
+            return {
                 ...state,
                 favoritesList: state.favoritesList.filter(
                     (fav) => fav.id !== action.payload.id
                 ),
-            }
-            localStorage.setItem('GlobalContext', JSON.stringify(filteredState))
-            return filteredState
+            };
         default:
-            throw new Error()
+            return state;
     }
 }
 
 export const ProductProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(reducer, initialState)
+    const [state, setState] = useReducer(reducer, initialState)
 
     useEffect(() => {
-        axios
-            .get(urlBase + 'productos')
-            .then((res) => {
-                dispatch({ type: 'GET_LIST', payload: res.data })
-            })
-            .catch(console.log)
-    }, [])
+        localStorage.setItem('GlobalContext', JSON.stringify(state));
+    }, [state]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            setState({ type: 'SET_LOADING', payload: true });
+            try {
+                const response = await axios.get(urlBase + 'productos');
+                setState({ type: 'GET_LIST', payload: response.data });
+            } catch (error) {
+                setState({ type: 'SET_ERROR', payload: error.message });
+                console.error('Error fetching products:', error);
+            }
+        };
+        fetchProducts();
+    }, []);
+
+    const contextValue = useMemo(() => ({
+        state,
+        dispatch: setState,
+    }), [state]);
 
     return (
-        <ProductContext.Provider
-            value={{
-                state,
-                dispatch,
-            }}
-        >
+        <ProductContext.Provider value={contextValue}>
             {children}
         </ProductContext.Provider>
     )

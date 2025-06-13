@@ -9,14 +9,12 @@ import {
     Box,
     Skeleton
 } from '@mui/material'
-import React, { useEffect } from 'react'
 import { useProducts } from '../../Context/ProductContext'
-import { Link } from 'react-router-dom'
 import ProductCard from './ProductCard'
-import { useState } from 'react'
-import { set } from 'date-fns'
 
 const GrillaProductos = () => {
+    const { state } = useProducts()
+
     function shuffle(lista) {
         let currentIndex = lista.length,
             randomIndex
@@ -36,11 +34,7 @@ const GrillaProductos = () => {
 
         return lista
     }
-    const [loading, setLoading] = useState(true)
-    const { state } = useProducts()
-    useEffect(() => {
-        setLoading(false)
-    }, [state])
+
     return (
         <Grid container paddingY={{ xs: 2, sm: 3, md: 5 }}>
             <Typography
@@ -57,7 +51,7 @@ const GrillaProductos = () => {
                 justifyContent: "center",
             }} spacing={2}>
                 {(shuffle(state.productList).slice(-5)).map((product) => (
-                    <ProductCard key={product.id} data={product} loading={loading} />
+                    <ProductCard key={product.id} data={product} loading={state.loading} />
                 ))}
             </Grid>
         </Grid>
