@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,12 +39,14 @@ public class ReservationController {
         return ResponseEntity.ok(reservationService.createReservation(reservationDto));
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @PutMapping("/{id}")
     public ResponseEntity<ReservationDto> updateReservation(@PathVariable Long id,  @RequestBody ReservationDto reservationDto) throws Exception{
         //Reservation updatedReservation = reservationService.updateReservation(id, reservationDto);
         return ResponseEntity.ok(reservationService.updateReservation(id, reservationDto));
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteReservation(@PathVariable Long id) throws Exception{
         reservationService.deleteReservation(id);
@@ -54,14 +57,11 @@ public class ReservationController {
     public ResponseEntity<?> listReservations() throws Exception{
         return ResponseEntity.ok(reservationService.listReservations());
     }
-
-    @PermitAll
     @GetMapping("/producto/{id}")
     public ResponseEntity<?> buscarReservasPorIdProducto(@PathVariable Long id) throws Exception{
         List<ReservationDto> reservas = reservationService.obtenerReservationPorIdProducto(id);
         return ResponseEntity.ok(reservas);
     }
-    @PermitAll
     @GetMapping("/usuario/{id}")
     public ResponseEntity<?> buscarReservasPorIdUsuario(@PathVariable Long id) throws Exception{
         List<ReservationDto> reservas = reservationService.obtenerReservationPorIdUsuario(id);
