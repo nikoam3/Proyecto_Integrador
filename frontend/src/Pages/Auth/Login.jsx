@@ -1,5 +1,6 @@
-import React from 'react'
-import { Box, Button, Grid, TextField, Typography } from '@mui/material'
+import React, { useState } from 'react'
+import { Box, Button, Grid, TextField, Typography, IconButton, InputAdornment } from '@mui/material'
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import { Link, useNavigate } from 'react-router-dom'
@@ -9,9 +10,18 @@ import Logotype from '../../Components/Common/Logotype'
 const Login = () => {
     let navigate = useNavigate()
     const { login, error, isLoading } = useLogin()
+    const [showPassword, setShowPassword] = useState(false);
+
     const handleFormSubmit = async (values) => {
         await login(values.email, values.password)
     }
+    const handleClickShowPassword = () => {
+        setShowPassword((prev) => !prev);
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
     return (
         <Grid
             container
@@ -100,7 +110,7 @@ const Login = () => {
                                     <TextField
                                         fullWidth
                                         variant="outlined"
-                                        type="password"
+                                        type={showPassword ? 'text' : 'password'}
                                         label="Password"
                                         onBlur={handleBlur}
                                         onChange={handleChange}
@@ -114,23 +124,37 @@ const Login = () => {
                                             touched.password && errors.password
                                         }
                                         sx={{ gridColumn: 'span 4' }}
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        aria-label="alternar visibilidad de la contraseña"
+                                                        onClick={handleClickShowPassword}
+                                                        onMouseDown={handleMouseDownPassword}
+                                                        edge="end"
+                                                    >
+                                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            ),
+                                        }}
                                     />
                                 </Box>
                                 <Box>
-                                        <Typography
-                                            variant="caption"
-                                            sx={{ gridColumn: 'span 4' }}
+                                    <Typography
+                                        variant="caption"
+                                        sx={{ gridColumn: 'span 4' }}
+                                    >
+                                        ¿Todavía no tenés cuenta?
+                                        <Link
+                                            underline="always"
+                                            component="button"
+                                            to={'/register'}
                                         >
-                                            ¿Todavía no tenés cuenta?
-                                            <Link
-                                                underline="always"
-                                                component="button"
-                                                to={'/register'}
-                                            >
-                                                {' Registrate'}
-                                            </Link>
-                                        </Typography>
-                                    </Box>
+                                            {' Registrate'}
+                                        </Link>
+                                    </Typography>
+                                </Box>
 
                                 <Box
                                     display="flex"

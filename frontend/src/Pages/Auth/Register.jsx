@@ -1,4 +1,5 @@
-import { Box, Button, Grid, TextField, Typography } from '@mui/material'
+import { Box, Button, Grid, TextField, Typography, IconButton, InputAdornment } from '@mui/material'
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import Logotype from '../../Components/Common/Logotype'
 import { Formik } from 'formik'
 import * as yup from 'yup'
@@ -13,8 +14,24 @@ const Register = () => {
     const { signUp, error, isLoading } = useSignup()
     const [checked, setChecked] = useState(false)
     const [openTyC, setOpenTyC] = useState(false)
+    const [showPassword, setShowPassword] = useState(false);
+    const [showPasswordRep, setShowPasswordRep] = useState(false);
     const scroll = ''
 
+    const handleClickShowPassword = () => {
+        setShowPassword((prev) => !prev);
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+    const handleClickShowPasswordRep = () => {
+        setShowPasswordRep((prev) => !prev);
+    };
+
+    const handleMouseDownPasswordRep = (event) => {
+        event.preventDefault();
+    };
     const handleChangeCheck = (event) => {
         setChecked(event.target.checked)
     }
@@ -185,7 +202,7 @@ const Register = () => {
                                     <TextField
                                         fullWidth
                                         variant="outlined"
-                                        type="password"
+                                        type={showPassword ? 'text' : 'password'}
                                         label="Contraseña"
                                         onBlur={handleBlur}
                                         onChange={handleChange}
@@ -200,6 +217,20 @@ const Register = () => {
                                             touched.password && errors.password
                                         }
                                         sx={{ gridColumn: 'span 4' }}
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        aria-label="alternar visibilidad de la contraseña"
+                                                        onClick={handleClickShowPassword}
+                                                        onMouseDown={handleMouseDownPassword}
+                                                        edge="end"
+                                                    >
+                                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            ),
+                                        }}
                                     />
                                     <Typography
                                         variant="caption"
@@ -211,7 +242,7 @@ const Register = () => {
                                     <TextField
                                         fullWidth
                                         variant="outlined"
-                                        type="password"
+                                        type={showPasswordRep ? 'text' : 'password'}
                                         label="Confirmar contraseña"
                                         onBlur={handleBlur}
                                         onChange={handleChange}
@@ -227,6 +258,21 @@ const Register = () => {
                                             errors.passwordConfirmation
                                         }
                                         sx={{ gridColumn: 'span 4' }}
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        aria-label="alternar visibilidad de la contraseña repetida"
+                                                        onClick={handleClickShowPasswordRep}
+                                                        onMouseDown={handleMouseDownPasswordRep}
+                                                        edge="end"
+                                                        name="iconPasswordConfirmation"
+                                                    >
+                                                        {showPasswordRep ? <VisibilityOff /> : <Visibility />}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            ),
+                                        }}
                                     />
                                     <Box>
                                         <Checkbox
