@@ -6,10 +6,9 @@ import { useNavigate } from 'react-router-dom'
 import { publicRoutes } from '../Utils/routes'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import axios from 'axios'
-import { urlBase, config } from '../Utils/constants'
+import { urlBase } from '../Utils/constants'
 import { useAuthContext } from '../hooks/useAuthContext'
 import jwt_decode from 'jwt-decode'
-import format from 'date-fns/format'
 
 const ListadoFavoritos = () => {
 

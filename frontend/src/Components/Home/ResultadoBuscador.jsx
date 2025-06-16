@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Box, Grid, Typography } from '@mui/material'
 import ProductCard from './ProductCard'
 import axios from 'axios'
-import { config, urlBase } from '../../Utils/constants'
+import { urlBase } from '../../Utils/constants'
 import { useProducts } from '../../Context/ProductContext'
 
 const ResultadoBuscador = ({ nombreProducto, stateDates }) => {

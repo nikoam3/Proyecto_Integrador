@@ -1,14 +1,13 @@
 import axios from 'axios'
 import React, { useEffect } from 'react'
-import { config, urlBase } from '../Utils/constants'
 
 const Home = () => {
-    useEffect(() => {
+    /*useEffect(() => {
         axios
             .get(urlBase + 'productos')
             .then(console.log)
             .catch(console.log)
-    }, [])
+    }, [])*/
 
     const bodyParameters = {
         key: 'value',

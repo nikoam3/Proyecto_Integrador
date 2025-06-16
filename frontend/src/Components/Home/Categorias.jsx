@@ -9,7 +9,7 @@ import {
     Modal
 } from '@mui/material'
 import axios from 'axios'
-import { urlBase, config } from '../../Utils/constants'
+import { urlBase } from '../../Utils/constants'
 import ProductsPagination from '../Common/ProductsPagination'
 import ProductCard from './ProductCard'
 import { useProducts } from '../../Context/ProductContext'

@@ -1,16 +1,12 @@
 import { Box, Button, Grid, TextField, Typography } from '@mui/material'
 import Logotype from '../../Components/Common/Logotype'
-import { publicRoutes } from '../../Utils/routes'
-import axios from 'axios'
 import { Formik } from 'formik'
 import * as yup from 'yup'
-import { config, urlBase } from '../../Utils/constants'
 import { useSignup } from '../../hooks/useSignup'
 import { Link } from 'react-router-dom'
 import CircularProgress from '@mui/material/CircularProgress'
 import Checkbox from '@mui/material/Checkbox'
 import React, { useState } from 'react'
-import { Scrollbar } from '../../Components/Common/Scrollbar'
 import Terminos_Condiciones from './Terminos_Condiciones'
 
 const Register = () => {

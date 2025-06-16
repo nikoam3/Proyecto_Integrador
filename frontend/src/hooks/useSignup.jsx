@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
-import { config, urlBase } from '../Utils/constants'
+import { urlBase } from '../Utils/constants'
 import { useAuthContext } from './useAuthContext'
 import { useSnackbar } from '../Context/SnackContext'
 import { useLogin } from './useLogin'
@@ -15,6 +15,7 @@ export const useSignup = () => {
     const signUp = (nombre, apellido, email, password) => {
         setIsLoading(true)
         setError(null)
+        const config = { headers: { 'Content-Type': 'application/json' } }
         axios
             .post(
                 urlBase + 'usuarios',

@@ -142,7 +142,7 @@ export const UsersTable = () => {
                 title={'Editar usuario'}
                 handleOpen={openModify}
                 handleClose={handleCloseModify}
-                user={''}
+                /*user={''}*/
             >
                 <UserFormModify />
             </ActionsModifyIcon>

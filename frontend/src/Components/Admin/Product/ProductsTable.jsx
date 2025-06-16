@@ -2,7 +2,7 @@ import { Box, Card } from '@mui/material'
 import { Scrollbar } from '../../Common/Scrollbar'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { urlBase, config } from '../../../Utils/constants'
+import { urlBase } from '../../../Utils/constants'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
@@ -66,7 +66,7 @@ const columns = [
     const [products, setProducts] = useState([])
     const getData = async () => {
         await axios
-            .get(urlBase + 'productos', config)
+            .get(urlBase + 'productos')
             .then((res) => {
                 setProducts(res.data)
             })

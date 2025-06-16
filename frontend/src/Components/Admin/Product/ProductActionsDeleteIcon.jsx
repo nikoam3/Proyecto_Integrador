@@ -10,13 +10,17 @@ import {
     Snackbar,
 } from '@mui/material'
 import axios from 'axios'
-import { urlBase, config } from '../../../Utils/constants'
+import { urlBase } from '../../../Utils/constants'
 import { useSnackbar } from '../../../Context/SnackContext'
 import { useLoadUsers } from '../../../hooks/Admin/useLoadUsers'
+import { useAuthContext } from '../../../hooks/useAuthContext'
 
 const ProductActionsDeleteIcon = ({ dialog, handleOpen, handleClose }) => {
     const { getData } = useLoadUsers()
     const { showSnackbar } = useSnackbar()
+    const { user } = useAuthContext()
+    const config = {headers: {Authorization :`Bearer ${user}`},}
+
     const handleDeleteConfirm = () => {
         axios
             .delete(urlBase + 'productos/' + dialog.id, config)

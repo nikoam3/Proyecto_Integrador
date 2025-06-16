@@ -2,20 +2,23 @@ import { Box, Button, TextField } from '@mui/material'
 import axios from 'axios'
 import { Formik } from 'formik'
 import * as yup from 'yup'
-import { config, urlBase } from '../../../Utils/constants'
+import { urlBase } from '../../../Utils/constants'
 import React, { useState, useEffect } from "react";
 import MenuItem from '@mui/material/MenuItem';
 import Checkbox from '@mui/material/Checkbox';
 import { useSnackbar } from '../../../Context/SnackContext'
+import { useAuthContext } from '../../../hooks/useAuthContext'
 
 
 export default function ProductFormModify({ handleClose, producto }) {
-    
+    const { user } = useAuthContext()
+    let config = { headers: { Authorization: `Bearer ${user}` }, }
+    config = { headers: { 'Content-Type': 'application/json' } }
     const { showSnackbar } = useSnackbar()
     const [categoriasBBDD, setCategoriasBBDD] = useState([])
     const [caracteristicasBBDD, setCaracteristicasBBDD] = useState([])
     const [caracteristicas, setCaracteristicas] = useState([]);
-    
+
     const handleChangeMultiSelect = (event) => {
         const value = event.target.value
         setCaracteristicas(value)
@@ -23,10 +26,10 @@ export default function ProductFormModify({ handleClose, producto }) {
 
     useEffect(() => {
         axios
-            .get(urlBase + 'categorias', config)
+            .get(urlBase + 'categorias')
             .then((res) => setCategoriasBBDD(res.data))
         axios
-            .get(urlBase + 'caracteristicas', config)
+            .get(urlBase + 'caracteristicas')
             .then((res) => setCaracteristicasBBDD(res.data))
     }, [])
 

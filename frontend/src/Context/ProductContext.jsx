@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { createContext, useContext, useEffect, useReducer, useMemo } from 'react';
-import { config, urlBase } from '../Utils/constants'
+import { urlBase } from '../Utils/constants'
 import { isItemExists } from '../Utils/helpers'
 
 export const ProductContext = createContext()

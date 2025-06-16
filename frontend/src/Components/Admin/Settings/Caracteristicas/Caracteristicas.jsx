@@ -1,24 +1,17 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { config, urlBase } from '../../../../Utils/constants'
+import { urlBase } from '../../../../Utils/constants'
 import {
-    Button,
     Chip,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    Stack,
 } from '@mui/material'
 import ConfirmDelete from './ConfirmDeleteCaracteristicas'
-import AddCircleIcon from '@mui/icons-material/AddCircle'
 import FormDialogCaracteristicas from './FormDialogCaracteristicas'
+
 const Caracteristicas = ({ handleClickOpen }) => {
     const [caracteristicas, setCaracteristicas] = useState([])
     const getData = async () => {
         await axios
-            .get(urlBase + 'caracteristicas', config)
+            .get(urlBase + 'caracteristicas')
             .then((res) => {
                 setCaracteristicas(res.data)
             })

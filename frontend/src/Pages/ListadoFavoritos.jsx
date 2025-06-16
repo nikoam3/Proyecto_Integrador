@@ -5,9 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { publicRoutes } from '../Utils/routes'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import { urlBase, config } from '../Utils/constants'
+import { urlBase } from '../Utils/constants'
 import { useAuthContext } from '../hooks/useAuthContext'
 import DeleteIcon from '@mui/icons-material/Delete';
 import jwt_decode from 'jwt-decode'
@@ -15,12 +14,10 @@ import { useSnackbar } from '../Context/SnackContext';
 
 
 const ListadoFavoritos = () => {
-
     const { user } = useAuthContext()
+    const config = {headers: {Authorization :`Bearer ${user}`},}
     let userDecoded = {}
-    let newConfig = config
-    newConfig.headers.Authorization = `Bearer ${user}`
-
+    const { showSnackbar } = useSnackbar()
     const [favoritos, setFavoritos] = useState([])
     const [refreshTable, setRefreshTable] = useState(false)
     const navigate = useNavigate()
@@ -29,13 +26,10 @@ const ListadoFavoritos = () => {
         revisarFavorito()
     }, [user, refreshTable])
 
-
-    const { showSnackbar } = useSnackbar()
-
     const revisarFavorito = () => {
         userDecoded = jwt_decode(user)
         axios
-            .get(urlBase + 'favoritos/usuario/' + userDecoded.id, newConfig)
+            .get(urlBase + 'favoritos/usuario/' + userDecoded.id, config)
             .then((res) => {
                 setFavoritos(res.data)
             })
@@ -89,7 +83,7 @@ const ListadoFavoritos = () => {
 
     const deleteFavorite = (favorito) => {
         axios
-            .delete(urlBase + 'favoritos/producto/' + favorito.id, newConfig)
+            .delete(urlBase + 'favoritos/producto/' + favorito.id, config)
             .then((res) => {
                 if (res.status === 200) {
                     showSnackbar(`Producto eliminado de favoritos`, 'success')

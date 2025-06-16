@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { useAdminContext } from '../useAdminContext'
-import { config, urlBase } from '../../Utils/constants'
+import { urlBase } from '../../Utils/constants'
 
 export const useLoadUser = () => {
     const [error, setError] = useState(null)
@@ -12,7 +12,7 @@ export const useLoadUser = () => {
         setIsLoading(true)
         setError(null)
         const res = await axios
-            .get(urlBase + 'usuarios/' + id, config)
+            .get(urlBase + 'usuarios/' + id)
             .then((res) => {
                 dispatch({ type: 'GET_USERS', payload: res.data })
             })
