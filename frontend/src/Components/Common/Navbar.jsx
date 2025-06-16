@@ -73,17 +73,6 @@ const Navbar = (props) => {
                     {user && <NavbarUserMenu userDecoded={userDecoded} />}
                     {!user && (
                         <>
-                            <NavLink to={publicRoutes.register}>
-                                <Button sx={{ mt: 3 }}
-                                    variant={
-                                        trigger == true
-                                            ? 'outlined'
-                                            : 'contained'
-                                    }
-                                >
-                                    Crear Cuenta
-                                </Button>
-                            </NavLink>
                             <NavLink to={publicRoutes.login}>
                                 <Button sx={{ mt: 1 }}
                                     variant={
