@@ -13,10 +13,11 @@ import CloseIcon from '@mui/icons-material/Close'
 import { useSnackbar } from '../../Context/SnackContext'
 import { Formik } from 'formik'
 import * as yup from 'yup'
-import { config, urlBase } from '../../Utils/constants'
+import { urlBase } from '../../Utils/constants'
 import { publicRoutes } from '../../Utils/routes'
 import { useNavigate } from 'react-router-dom'
 import format from 'date-fns/format'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 const FormReservar = ({
     handleOpen,
@@ -28,6 +29,8 @@ const FormReservar = ({
 }) => {
     const scroll = 'paper'
     const { showSnackbar } = useSnackbar()
+    const { user } = useAuthContext()
+    const config = {headers: {Authorization :`Bearer ${user}`},}
     const navigate = useNavigate()
 
     const initialValues = {

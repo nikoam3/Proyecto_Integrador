@@ -9,18 +9,16 @@ import {
     Modal
 } from '@mui/material'
 import axios from 'axios'
-import { urlBase, config } from '../../Utils/constants'
+import { urlBase } from '../../Utils/constants'
 import ProductsPagination from '../Common/ProductsPagination'
 import ProductCard from './ProductCard'
 import { useProducts } from '../../Context/ProductContext'
 
 const Categorias = () => {
     const [categorias, setCategorias] = useState([])
-    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('')
     const [products, setProducts] = useState([])
     const [productosFiltrados, setProductosFiltrados] = useState([])
     const { state } = useProducts()
-    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         setProducts(state.productList);
@@ -28,18 +26,15 @@ const Categorias = () => {
             .get(urlBase + 'categorias/')
             .then((res) => {
                 setCategorias(res.data)
-                setLoading(false)
             })
             .catch(console.log)
-    }, [])
+    }, [state.productList])
 
-    const handleCategoriasClick = (e) => {
-        setCategoriaSeleccionada(e.target.innerText)
-        setProductosFiltrados(
-            products.filter((product) =>
-                product.categoria.titulo == categoriaSeleccionada
-            )
+    const handleCategoriasClick = (titulo) => {
+        let filtrados = products.filter((product) =>
+            product.categoria?.titulo == titulo
         )
+        setProductosFiltrados(filtrados)
     }
     return (
         <Grid container paddingY={{ xs: 2, sm: 3, md: 5 }}>
@@ -64,8 +59,8 @@ const Categorias = () => {
                         md={4}
                         lg={2}
                     >
-                        <Card onClick={(e) => {
-                            handleCategoriasClick(e)
+                        <Card onClick={() => {
+                            handleCategoriasClick(item.titulo)
                         }}>
                             <CardActionArea>
                                 <CardContent>
@@ -86,7 +81,7 @@ const Categorias = () => {
                 justifyContent={'space-evenly'} my={4}
             >
                 {productosFiltrados.map((item) =>
-                    <ProductCard key={item.id} data={item} loading={loading} />
+                    <ProductCard key={item.id} data={item} loading={state.loading} />
                 )}
             </Grid>
         </Grid>

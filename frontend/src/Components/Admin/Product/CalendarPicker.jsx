@@ -4,7 +4,7 @@ import 'react-date-range/dist/theme/default.css'
 import { DateRangePicker } from 'react-date-range'
 import { Box } from '@mui/material'
 import axios from 'axios'
-import { config, urlBase } from '../../../Utils/constants'
+import { urlBase } from '../../../Utils/constants'
 
 function getDates(startDate, endDate) {
     const dates = []

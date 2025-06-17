@@ -9,13 +9,17 @@ import {
 import axios from 'axios'
 import { Formik } from 'formik'
 import * as yup from 'yup'
-import { config, urlBase } from '../../../Utils/constants'
+import { urlBase } from '../../../Utils/constants'
 import { useSnackbar } from '../../../Context/SnackContext'
 import { useLoadUsers } from '../../../hooks/Admin/useLoadUsers'
+import { useAuthContext } from '../../../hooks/useAuthContext'
 
 const UserForm = ({ handleClose }) => {
     const { showSnackbar } = useSnackbar()
     const { getData } = useLoadUsers()
+    const { user } = useAuthContext()
+    let config = { headers: { Authorization: `Bearer ${user}` }, }
+    config = { headers: { 'Content-Type': 'application/json' } }
 
     const handleFormSubmit = (values) => {
         const formData = {

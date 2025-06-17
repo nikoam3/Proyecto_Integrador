@@ -2,15 +2,18 @@ import { Box, Button, TextField } from '@mui/material'
 import axios from 'axios'
 import { Formik } from 'formik'
 import * as yup from 'yup'
-import { config, urlBase } from '../../../Utils/constants'
+import { urlBase } from '../../../Utils/constants'
 import React, { useState, useEffect } from "react";
 import MenuItem from '@mui/material/MenuItem';
 import { useSnackbar } from '../../../Context/SnackContext'
 import Checkbox from '@mui/material/Checkbox';
+import { useAuthContext } from '../../../hooks/useAuthContext'
 
 const ProductForm = ({ handleClose }) => {
     const { showSnackbar } = useSnackbar()
-
+    const { user } = useAuthContext()
+    let config = { headers: { Authorization: `Bearer ${user}` }, }
+    config = { headers: { 'Content-Type': 'application/json' } }
     const [categoriasBBDD, setCategoriasBBDD] = useState([])
     const [caracteristicasBBDD, setCaracteristicasBBDD] = useState([])
     const [caracteristicas, setCaracteristicas] = useState([]);
@@ -21,10 +24,10 @@ const ProductForm = ({ handleClose }) => {
     };
     useEffect(() => {
         axios
-            .get(urlBase + 'categorias', config)
+            .get(urlBase + 'categorias')
             .then((res) => setCategoriasBBDD(res.data))
         axios
-            .get(urlBase + 'caracteristicas', config)
+            .get(urlBase + 'caracteristicas')
             .then((res) => setCaracteristicasBBDD(res.data))
     }, [])
 
@@ -34,7 +37,7 @@ const ProductForm = ({ handleClose }) => {
             descripcion: values.descripcion,
             precio: values.precio,
             categoria: { "id": values.categoria },
-            caracteristicas: caracteristicas.length > 0 ? caracteristicas.map((caracteristica) => ({"id":caracteristica})) : null,
+            caracteristicas: caracteristicas.length > 0 ? caracteristicas.map((caracteristica) => ({ "id": caracteristica })) : null,
             imagenes: ""
         }
 
@@ -46,7 +49,8 @@ const ProductForm = ({ handleClose }) => {
                     'success')
                 handleClose()
             })
-            .catch((err) => {console.log(formData)
+            .catch((err) => {
+                console.log(formData)
                 showSnackbar(`${err.response.data.message}`, 'warning')
             })
     }
@@ -139,7 +143,7 @@ const ProductForm = ({ handleClose }) => {
                             >
                                 {caracteristicasBBDD.map((caracteristica) => (
                                     <MenuItem key={caracteristica.id} value={caracteristica.id}>
-                                        <Checkbox checked={caracteristicas.indexOf(caracteristica.id) > -1}  />
+                                        <Checkbox checked={caracteristicas.indexOf(caracteristica.id) > -1} />
                                         {caracteristica.titulo}
                                     </MenuItem>
                                 ))}

@@ -1,29 +1,25 @@
-import React, { useState } from 'react'
 import {
-    Alert,
-    Button,
     Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
     DialogTitle,
     IconButton,
-    Snackbar,
 } from '@mui/material'
 import axios from 'axios'
-import { urlBase, config } from '../../../Utils/constants'
+import { urlBase } from '../../../Utils/constants'
 import { useSnackbar } from '../../../Context/SnackContext'
 import { useLoadUser } from '../../../hooks/Admin/useLoadUser'
 import CloseIcon from '@mui/icons-material/Close'
-import { toUnitless } from '@mui/material/styles/cssUtils'
+import { useAuthContext } from '../../../hooks/useAuthContext'
 
 const ActionsModifyIcon = ({
-    user,
+    /*user,*/
     handleOpen,
     handleClose,
     children,
     title,
 }) => {
+    const { user } = useAuthContext()
+    let config = { headers: { Authorization: `Bearer ${user}` }, }
+    config = { headers: { 'Content-Type': 'application/json' } }
     const { getDataUserUnique } = useLoadUser()
     const { showSnackbar } = useSnackbar()
 

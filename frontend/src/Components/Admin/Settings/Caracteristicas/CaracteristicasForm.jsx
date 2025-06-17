@@ -2,9 +2,14 @@ import { Box, Button, TextField } from '@mui/material'
 import axios from 'axios'
 import { Formik } from 'formik'
 import * as yup from 'yup'
-import { config, urlBase } from '../../../../Utils/constants'
+import { urlBase } from '../../../../Utils/constants'
+import { useAuthContext } from '../../../../hooks/useAuthContext'
+
 
 const CaracteristicasForm = () => {
+    const { user } = useAuthContext()
+    let config = { headers: { Authorization: `Bearer ${user}` }, }
+    config = { headers: { 'Content-Type': 'application/json' } }
     const handleFormSubmit = (values) => {
         const formData = {
             titulo: values.titulo,

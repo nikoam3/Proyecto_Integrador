@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Grid, Autocomplete, TextField, Typography, Box } from '@mui/material'
-import axios from 'axios'
-import { config, urlBase } from '../../Utils/constants'
 import ResultadoBuscador from './ResultadoBuscador'
 import { DateRangePicker } from 'react-date-range'
 import { useProducts } from '../../Context/ProductContext'

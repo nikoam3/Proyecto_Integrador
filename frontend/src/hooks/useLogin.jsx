@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
-import { config, urlBase } from '../Utils/constants'
+import { urlBase } from '../Utils/constants'
 import { useAuthContext } from './useAuthContext'
 import { useNavigate } from 'react-router-dom'
 import { publicRoutes } from '../Utils/routes'
@@ -12,6 +12,7 @@ export const useLogin = () => {
     const [isLoading, setIsLoading] = useState(null)
     const { dispatch } = useAuthContext()
     const { showSnackbar } = useSnackbar()
+    const config = { headers: { 'Content-Type': 'application/json' } }
 
     const login = (email, password) => {
         setIsLoading(true)

@@ -8,9 +8,12 @@ import {
     DialogTitle,
 } from '@mui/material'
 import axios from 'axios'
-import { config, urlBase } from '../../../../Utils/constants'
+import { urlBase } from '../../../../Utils/constants'
+import { useAuthContext } from '../../../../hooks/useAuthContext'
 
 const ConfirmDelete = ({ dialog, handleOpen, handleClose }) => {
+    const { user } = useAuthContext()
+    const config = {headers: {Authorization :`Bearer ${user}`},}
     const handleDeleteConfirm = () => {
         axios
             .delete(urlBase + 'categorias/' + dialog.id, config)

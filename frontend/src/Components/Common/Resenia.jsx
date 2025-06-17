@@ -4,8 +4,9 @@ import Rating from '@mui/material/Rating'
 import Box from '@mui/material/Box'
 import StarIcon from '@mui/icons-material/Star'
 import axios from 'axios'
-import { urlBase, config } from '../../Utils/constants'
+import { urlBase } from '../../Utils/constants'
 import { useSnackbar } from '../../Context/SnackContext'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 const labels = {
     0.5: 'Ineficiente',
@@ -32,6 +33,9 @@ export default function Resenia({ idProducto, usuarioLog }) {
     const [hover, setHover] = useState(-1)
     const [resenias, setResenias] = useState([])
     const { showSnackbar } = useSnackbar()
+    const { user } = useAuthContext()
+    let config = { headers: { Authorization: `Bearer ${user}` }, }
+    config = { headers: { 'Content-Type': 'application/json' } }
 
     const handleClick = (newValue) => {
         const formData = {
@@ -55,7 +59,7 @@ export default function Resenia({ idProducto, usuarioLog }) {
             })
             .catch(console.log)
     }
-    
+
     useEffect(() => {
         axios
             .get(urlBase + 'resenias/producto/' + idProducto)

@@ -6,13 +6,10 @@ import {
     TextField,
     Typography,
 } from '@mui/material'
-import axios from 'axios'
 import { Formik } from 'formik'
 import * as yup from 'yup'
-import { config, urlBase } from '../../../Utils/constants'
 import { useSnackbar } from '../../../Context/SnackContext'
 import { useLoadUser } from '../../../hooks/Admin/useLoadUser'
-import { useEffect } from 'react'
 
 const UserFormModify = ({ handleClose }) => {
     const { showSnackbar } = useSnackbar()

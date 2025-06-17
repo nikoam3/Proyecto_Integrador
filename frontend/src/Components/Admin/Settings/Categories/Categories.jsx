@@ -1,19 +1,10 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { config, urlBase } from '../../../../Utils/constants'
-import {
-    Button,
-    Chip,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    Stack,
-} from '@mui/material'
+import { urlBase } from '../../../../Utils/constants'
+import { Chip } from '@mui/material'
 import ConfirmDelete from './ConfirmDeleteCategories'
-import AddCircleIcon from '@mui/icons-material/AddCircle'
 import FormDialogCategories from './FormDialogCategories'
+
 const Categories = ({ handleClickOpen }) => {
     const [categories, setCategories] = useState([])
     const getData = () => {
