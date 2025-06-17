@@ -30,7 +30,7 @@ const FormReservar = ({
     const scroll = 'paper'
     const { showSnackbar } = useSnackbar()
     const { user } = useAuthContext()
-    const config = {headers: {Authorization :`Bearer ${user}`},}
+    const config = { headers: { Authorization: `Bearer ${user}` }, }
     const navigate = useNavigate()
 
     const initialValues = {

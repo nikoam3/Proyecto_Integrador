@@ -63,7 +63,9 @@ const Detalle = () => {
             id: parseInt(usuarioLog?.id),
             email: usuarioLog?.sub,
             fullname: usuarioLog?.fullname,
-            userRol: usuarioLog?.user_role
+            userRol: usuarioLog?.user_role,
+            nombre: usuarioLog?.fullname.split(' ')[0],
+            apellido: usuarioLog?.fullname.split(' ')[1],
         },
     }
 
