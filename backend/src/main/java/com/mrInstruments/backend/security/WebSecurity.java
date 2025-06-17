@@ -92,6 +92,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 			"/categorias/**",
 			"/caracteristicas/**",
 			"/usuarios/**",
-			"/reservas/**"
+			"/reservas/**",
+			"/resenias/**",
+			"/favoritos/**"
 	};
 }
